@@ -320,12 +320,21 @@ func (g *game) movePlayer() {
 
 func (g *game) next(ox, oy int, o string) (int, int, bool) {
 	c := g.s.cells
+	for _, ob := range g.objs {
+		if ob.x == ox && ob.y == oy && ob.t == "g" && ob.o == o {
+			return 0, 0, false
+		}
+	}
 	switch o {
 	case "u":
 		if oy > 0 && c[oy-1][ox].valid && !c[oy][ox].wu {
 			for _, o := range g.objs {
 				if o.x == ox && o.y == oy-1 {
-					return 0, 0, false
+					if o.t == "g" && o.o != "d" {
+
+					} else {
+						return 0, 0, false
+					}
 				}
 			}
 			if g.exit.x == ox && g.exit.y == oy-1 {
@@ -337,7 +346,11 @@ func (g *game) next(ox, oy int, o string) (int, int, bool) {
 		if ox > 0 && c[oy][ox-1].valid && !c[oy][ox].wl {
 			for _, o := range g.objs {
 				if o.x == ox-1 && o.y == oy {
-					return 0, 0, false
+					if o.t == "g" && o.o != "r" {
+
+					} else {
+						return 0, 0, false
+					}
 				}
 			}
 			if g.exit.x == ox-1 && g.exit.y == oy {
@@ -349,7 +362,11 @@ func (g *game) next(ox, oy int, o string) (int, int, bool) {
 		if ox < len(c[0])-1 && c[oy][ox+1].valid && !c[oy][ox].wr {
 			for _, o := range g.objs {
 				if o.x == ox+1 && o.y == oy {
-					return 0, 0, false
+					if o.t == "g" && o.o != "l" {
+
+					} else {
+						return 0, 0, false
+					}
 				}
 			}
 			if g.exit.x == ox+1 && g.exit.y == oy {
@@ -361,7 +378,11 @@ func (g *game) next(ox, oy int, o string) (int, int, bool) {
 		if oy < len(c)-1 && c[oy+1][ox].valid && !c[oy][ox].wd {
 			for _, o := range g.objs {
 				if o.x == ox && o.y == oy+1 {
-					return 0, 0, false
+					if o.t == "g" && o.o != "u" {
+
+					} else {
+						return 0, 0, false
+					}
 				}
 			}
 			if g.exit.x == ox && g.exit.y == oy+1 {
@@ -488,7 +509,7 @@ func (g *game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 }
 
 func main() {
-	ebiten.SetWindowSize(400, 400)
+	ebiten.SetWindowSize(800, 800)
 	ebiten.SetWindowTitle("GGJ 2021 - MAZE")
 	if err := ebiten.RunGame(&game{}); err != nil {
 		log.Fatal(err)
