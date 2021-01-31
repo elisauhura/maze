@@ -194,6 +194,11 @@ func (g *game) Update() error {
 		return nil
 	}
 
+	if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
+		g.load()
+		return nil
+	}
+
 	now := time.Now()
 	if now.Sub(last).Seconds() > 1 {
 		last = now
@@ -648,6 +653,8 @@ You cannot go upstair holding a wall.
 
 Use the arrow keys to move around the map.
 To survive, do not let the guards be able to see you!
+
+You can use <esc> to reset a level
 
 Press <enter> to begin!
 
