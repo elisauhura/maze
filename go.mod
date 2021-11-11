@@ -1,4 +1,4 @@
-module github.com/elUrso/maze
+module github.com/elisauhura/maze
 
 go 1.15
 

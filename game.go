@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	. "github.com/elUrso/maze/levels"
+	. "github.com/elisauhura/maze/levels"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -660,7 +660,7 @@ Press <enter> to begin!
 
 
 
-Made by vitor @ (silva.moe)
+Made by elisa @ (uhura.cc)
 using GoLang + Ebiten
 `
 
